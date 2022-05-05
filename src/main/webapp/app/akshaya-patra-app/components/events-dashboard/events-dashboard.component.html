@@ -1,0 +1,74 @@
+<div class="col-md-12 grid-margin stretch-card px-0">
+  <div class="card">
+    <div class="card-body py-2">
+      <div class="form-group row mb-0">
+        <div class="col">
+          <div class="row">
+
+            <div class="col-md-3 p-1">
+              <ng-select
+                placeholder="Tags"
+                [items]="causeTags"
+                class="ng-select-bottom ng-select ng-select-multiple ng-select-searchable ng-select-clearable ng-untouched ng-pristine ng-valid"
+                [formControl]="selectedCauseTagsFormControl"
+                [multiple]="true">
+              </ng-select>
+            </div>
+
+            <div class="col-md-2 form-check-flat form-check-primary p-1">
+              <ng-select [items]="locationTypes"
+                         placeholder="Location Type"
+                         [formControl]="locationTypeFormControl">
+              </ng-select>
+            </div>
+
+            <div class="col-md-3 p-1 tiny-margin-top">
+              <input [formControl]="physicalLocationSearchEntryFormControl"
+                     [ngbTypeahead]="locationTypeaheadData"
+                     [readOnly]="disablePhysicalLocationEntry"
+                     class="form-control"
+                     type="text"
+                     placeholder="Location"
+                     autocomplete="off">
+            </div>
+            <div class="col-md-2 p-1 tiny-margin-top">
+              <div class="input-group">
+                <input class="form-control"
+                       placeholder="Minimum Date"
+                       [formControl]="minimumDateFormControl"
+                       (focus)="minimumDatePicker.open()"
+                       restoreFocus="false"
+                       ngbDatepicker
+                       #minimumDatePicker="ngbDatepicker">
+              </div>
+            </div>
+            <div class="col-md-2 p-1 tiny-margin-top">
+              <div class="input-group">
+                <input class="form-control"
+                       placeholder="Maximum Date"
+                       [formControl]="maximumDateFormControl"
+                       (focus)="maximumDatePicker.open()"
+                       restoreFocus="false"
+                       ngbDatepicker
+                       #maximumDatePicker="ngbDatepicker">
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<jhi-event-card-rows [events$]="eventsAfterFilters$"
+                     [isEmptyFromStart]="isEventsEmptyFromStart"
+                     [emptyFromStartText]="emptyFromStartText"></jhi-event-card-rows>
+<!--    <jhi-event-preview-->
+<!--      style="cursor: pointer"-->
+<!--      *ngFor="let event of (eventsAfterFilters$ | async)"-->
+<!--      [event]="event"-->
+<!--    ></jhi-event-preview>-->
+
+
+
